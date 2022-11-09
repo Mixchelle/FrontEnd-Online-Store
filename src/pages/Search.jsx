@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Message from '../components/Message';
 // import ShoppingCart from './ShoppingCart';
+import CategorieList from '../components/CategorieList';
 
 class Search extends Component {
   render() {
@@ -27,6 +28,7 @@ class Search extends Component {
             </button>
           </Link>
         </div>
+        <CategorieList />
       </div>
     );
   }
