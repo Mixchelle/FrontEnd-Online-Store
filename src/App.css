@@ -1,42 +1,44 @@
-.App {
+body {
+  background-color: #c3ece3;
+}
+
+.cart-button {
+  background-color: #f55d3e;
+  color: white;
+  display: flex;
+  font-weight: 500;
+  height: 25px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 15px;
+  text-decoration: none;
+}
+
+.empty-cart {
+  display: flex;
+  justify-content: center;
+}
+
+.input-search {
+  border: solid black 2px;
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 15px;
+  width: 600px;
+}
+
+.message {
+  color: #399e5a;
+  margin-top: 35px;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media ( prefers-reduced-motion : no-preference ) {
-
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-
-}
-
-.App-header {
-  align-items: center;
-  background-color: #282c34;
-  color: white;
+.shopping-cart {
+  color: #f55d3e;
   display: flex;
-  flex-direction: column;
-  font-size: calc(10px + 2vmin);
   justify-content: center;
-  min-height: 100vh;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px;
 }
