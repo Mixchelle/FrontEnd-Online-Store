@@ -5,13 +5,13 @@ import './App.css';
 
 function App() {
   return (
-      <div className="App">
-        <main>
-          <Switch>
-            <Route exact path="/" component={ Search } />
-          </Switch>
-        </main>
-      </div>
+    <div className="App">
+      <main>
+        <Switch>
+          <Route exact path="/" component={ Search } />
+        </Switch>
+      </main>
+    </div>
   );
 }
 
