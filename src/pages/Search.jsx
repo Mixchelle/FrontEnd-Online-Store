@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Message from '../components/Message';
+import CategorieList from '../components/CategorieList';
 
 class Search extends Component {
   render() {
@@ -13,6 +14,7 @@ class Search extends Component {
         <h2>
           <Message />
         </h2>
+        <CategorieList />
       </div>
     );
   }
