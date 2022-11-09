@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import logo from './logo.svg';
 import './App.css';
-import Message from './components/Message';
+import Search from './components/Message';
 
 function App() {
   return (
@@ -24,7 +24,7 @@ function App() {
           <Route
             exact
             path="/"
-            component={ Message }
+            component={ Search }
           />
         </Switch>
       </main>
