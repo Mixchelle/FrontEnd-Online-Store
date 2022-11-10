@@ -50,14 +50,13 @@ body {
 }
 
 .form {
-
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
 }
 
 .form-message {
-  margin-left: auto ;
+  margin-left: auto;
   margin-right: auto;
 }
 
