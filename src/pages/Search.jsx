@@ -40,8 +40,9 @@ class Search extends Component {
     const message = <p className="nothing">Nenhum produto foi encontrado</p>;
 
     return (
-      <div>
-        <div>
+      <div className="organize">
+        <CategorieList />
+        <div className="form-message">
           <Message />
           <form className="form">
             <input
@@ -85,7 +86,6 @@ class Search extends Component {
             </button>
           </Link>
         </div>
-        <CategorieList />
       </div>
     );
   }
