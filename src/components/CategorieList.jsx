@@ -20,8 +20,8 @@ class CategorieList extends React.Component {
   render() {
     const { categories } = this.state;
     return (
-      <div>
-        <p>Categorias:</p>
+      <div className="categories">
+        <p className="category-title">Categorias:</p>
         { categories.map((category) => (
           <label
             htmlFor="category"
@@ -31,6 +31,7 @@ class CategorieList extends React.Component {
             <input
               type="radio"
               name="category"
+              className="category-items"
               id={ category.name }
               value={ category.name }
             />
