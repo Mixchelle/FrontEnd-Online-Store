@@ -4,9 +4,9 @@ class Message extends Component {
   render() {
     return (
       <div className="message" data-testid="home-initial-message">
-        <p>
+        <h2>
           Digite algum termo de pesquisa ou escolha uma categoria.
-        </p>
+        </h2>
       </div>
     );
   }

@@ -1,26 +1,83 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Message from '../components/Message';
-// import ShoppingCart from './ShoppingCart';
 import CategorieList from '../components/CategorieList';
+import * as api from '../services/api';
+// import ShoppingCart from './ShoppingCart';
 
 class Search extends Component {
+  state = {
+    frase: '',
+    produto: [],
+    carregar: true,
+  };
+
+  handleChange = ({ target }) => {
+    const { name, value } = target;
+    this.setState({
+      [name]: value,
+    });
+  };
+
+  async fetchApi() {
+    const { frase } = this.state;
+    const produtos = await api.getProductsFromCategoryAndQuery('', frase);
+
+    if (produtos.results.length === 0) {
+      this.setState({
+        carregar: true,
+      });
+    } else {
+      this.setState({
+        carregar: false,
+        produto: produtos.results,
+      });
+    }
+  }
+
   render() {
+    const { produto, carregar } = this.state;
+    const message = <p className="nothing">Nenhum produto foi encontrado</p>;
+
     return (
       <div>
-        <h2>
+        <div>
           <Message />
-        </h2>
-        <form>
-          <label htmlFor="inputId">
+          <form className="form">
             <input
               className="input-search"
+              id="frase"
+              name="frase"
+              data-testid="query-input"
               type="text"
-              id="inputId"
-              name="inputId"
+              onChange={ this.handleChange }
             />
-          </label>
-        </form>
+            <div className="button">
+              <button
+                id="button"
+                name="button"
+                data-testid="query-button"
+                type="button"
+                onClick={ () => this.fetchApi() }
+              >
+                Buscar
+              </button>
+            </div>
+            { carregar ? message
+              : produto
+                .map(({ id, title, thumbnail, price }) => (
+                  <div
+                    key={ id }
+                    data-testid="product"
+                    className="produtos"
+                  >
+                    <p className="title">{title}</p>
+                    <img src={ thumbnail } alt={ title } />
+                    <p>{ price }</p>
+                  </div>
+                ))}
+          </form>
+        </div>
         <div>
           <Link to="/cart" data-testid="shopping-cart-button">
             <button className="cart-button" type="button">
