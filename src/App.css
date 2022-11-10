@@ -94,6 +94,25 @@ body {
   width: 500px;
 }
 
+.title {
+  align-items: center;
+  height: 70px;
+}
+
+.input-search {
+  border: solid black 2px;
+  margin-left: 15%;
+  margin-right: 15%;
+  margin-top: 15px;
+  width: 70%;
+}
+
+.message {
+  color: #3eaf64;
+  margin-top: 35px;
+  text-align: center;
+}
+
 .shopping-cart {
   color: #f55d3e;
   display: flex;

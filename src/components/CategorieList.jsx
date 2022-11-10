@@ -24,7 +24,7 @@ class CategorieList extends React.Component {
         <p className="category-title">Categorias:</p>
         { categories.map((category) => (
           <label
-            htmlFor="category"
+            htmlFor={ category.name }
             data-testid="category"
             key={ category.id }
           >
