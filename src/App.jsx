@@ -1,8 +1,8 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Search from './pages/Search';
-import './App.css';
 import ShoppingCart from './pages/ShoppingCart';
+import './App.css';
 
 function App() {
   return (

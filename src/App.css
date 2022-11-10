@@ -19,13 +19,47 @@ body {
   justify-content: center;
 }
 
+.form {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  margin: 20px;
+}
+
+.button {
+  margin: auto;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  text-align: center;
+  width: 100%;
+}
+
+.nothing {
+  text-align: center;
+  width: 100%;
+}
+
+.produtos {
+  background-color: white;
+  border: 2px solid black;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  padding: 20px;
+  text-align: center;
+  width: 500px;
+}
+
+.title {
+  align-items: center;
+  height: 70px;
+}
+
 .input-search {
   border: solid black 2px;
-  display: flex;
-  margin-left: auto;
-  margin-right: auto;
+  margin-left: 15%;
+  margin-right: 15%;
   margin-top: 15px;
-  width: 600px;
+  width: 70%;
 }
 
 .message {
