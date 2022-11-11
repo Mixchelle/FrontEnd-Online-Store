@@ -18,6 +18,9 @@ body {
   height: 25px;
   margin-right: 30px;
   margin-top: 30px;
+}
+
+a {
   text-decoration: none;
 }
 
@@ -85,18 +88,12 @@ body {
 }
 
 .produtos {
-  background-color: white;
   border: 2px solid black;
   border-radius: 10px;
   margin-bottom: 20px;
   padding: 20px;
   text-align: center;
   width: 500px;
-}
-
-.title {
-  align-items: center;
-  height: 70px;
 }
 
 .shopping-cart {
@@ -106,5 +103,10 @@ body {
   margin-left: auto;
   margin-right: auto;
   margin-top: 30px;
+}
+
+.title {
+  align-items: center;
+  height: 70px;
 }
 
