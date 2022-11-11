@@ -79,15 +79,21 @@ class Search extends Component {
             </div>
             { carregar ? message : produto
               .map(({ id, title, thumbnail, price }) => (
-                <div
+                <Link
+                  to={ `productDetails/${id}` }
                   key={ id }
-                  data-testid="product"
-                  className="produtos"
+                  data-testid="product-detail-link"
                 >
-                  <p className="title">{title}</p>
-                  <img src={ thumbnail } alt={ title } />
-                  <p>{ price }</p>
-                </div>
+                  <div
+                    key={ id }
+                    data-testid="product"
+                    className="produtos"
+                  >
+                    <p className="title">{title}</p>
+                    <img src={ thumbnail } alt={ title } />
+                    <p>{ price }</p>
+                  </div>
+                </Link>
               ))}
           </form>
         </div>
