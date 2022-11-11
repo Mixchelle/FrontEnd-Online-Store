@@ -4,7 +4,6 @@ import Message from '../components/Message';
 import CategorieList from '../components/CategorieList';
 import * as api from '../services/api';
 // import ShoppingCart from './ShoppingCart';
-
 class Search extends Component {
   state = {
     frase: '',
@@ -19,10 +18,23 @@ class Search extends Component {
     });
   };
 
+  fetchSearch = async (frase) => {
+    const produtos = await api.getProductsFromCategoryAndQuery(frase, '');
+    if (produtos.length === 0) {
+      this.setState({
+        carregar: true,
+      });
+    } else {
+      this.setState({
+        carregar: false,
+        produto: produtos.results,
+      });
+    }
+  };
+
   async fetchApi() {
     const { frase } = this.state;
     const produtos = await api.getProductsFromCategoryAndQuery('', frase);
-
     if (produtos.results.length === 0) {
       this.setState({
         carregar: true,
@@ -38,10 +50,11 @@ class Search extends Component {
   render() {
     const { produto, carregar } = this.state;
     const message = <p className="nothing">Nenhum produto foi encontrado</p>;
-
     return (
       <div className="organize">
-        <CategorieList />
+        <CategorieList
+          fetchSearch={ this.fetchSearch }
+        />
         <div className="form-message">
           <Message />
           <form className="form">
@@ -64,19 +77,18 @@ class Search extends Component {
                 Buscar
               </button>
             </div>
-            { carregar ? message
-              : produto
-                .map(({ id, title, thumbnail, price }) => (
-                  <div
-                    key={ id }
-                    data-testid="product"
-                    className="produtos"
-                  >
-                    <p className="title">{title}</p>
-                    <img src={ thumbnail } alt={ title } />
-                    <p>{ price }</p>
-                  </div>
-                ))}
+            { carregar ? message : produto
+              .map(({ id, title, thumbnail, price }) => (
+                <div
+                  key={ id }
+                  data-testid="product"
+                  className="produtos"
+                >
+                  <p className="title">{title}</p>
+                  <img src={ thumbnail } alt={ title } />
+                  <p>{ price }</p>
+                </div>
+              ))}
           </form>
         </div>
         <div>
@@ -90,5 +102,4 @@ class Search extends Component {
     );
   }
 }
-
 export default Search;
