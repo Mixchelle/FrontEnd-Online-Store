@@ -6,6 +6,7 @@ import * as api from '../services/api';
 class ProductDetails extends Component {
   state = {
     productInfos: [],
+    newArrayDetails: [],
   };
 
   componentDidMount() {
@@ -15,8 +16,21 @@ class ProductDetails extends Component {
   getProductInfos = async () => {
     const { match: { params: { id } } } = this.props;
     const product = await api.getProductById(id);
-    console.log(product);
     this.setState({ productInfos: product });
+  };
+
+  insertStorageProdutDetails = () => {
+    const { productInfos, newArrayDetails } = this.state;
+    this.setState({
+      newArrayDetails: newArrayDetails.push(productInfos),
+    });
+    localStorage.setItem('itemFromDetails', JSON.stringify(newArrayDetails));
+    // this.setState((prevState) => ({
+    //   newArrayDetails: [...prevState.newArrayDetails, productInfos],
+    // }), () => {
+    //   const { newArrayDetails } = this.state;
+    //   localStorage.setItem('item', JSON.stringify(newArrayDetails));
+    // });
   };
 
   render() {
@@ -36,7 +50,14 @@ class ProductDetails extends Component {
             alt={ productInfos.title }
           />
           <h3 data-testid="product-detail-price">{ productInfos.price }</h3>
-          <Link to="/cart" data-testid="shopping-cart-button">
+          <button
+            data-testid="product-detail-add-to-cart"
+            type="button"
+            onClick={ this.insertStorageProdutDetails }
+          >
+            Adicionar ao carrinho
+          </button>
+          <Link to="/cart">
             <button
               className="second-cart-button"
               type="button"
