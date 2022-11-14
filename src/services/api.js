@@ -16,3 +16,7 @@ export async function getProductById(id) {
   const requestJson = await request.json();
   return requestJson;
 }
+
+export async function addSong(song) {
+  return localStorage.setItem('item', JSON.stringify(song));
+}

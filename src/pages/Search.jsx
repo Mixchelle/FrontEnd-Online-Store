@@ -9,6 +9,7 @@ class Search extends Component {
     frase: '',
     produto: [],
     carregar: true,
+    newArray: [],
   };
 
   handleChange = ({ target }) => {
@@ -16,6 +17,18 @@ class Search extends Component {
     this.setState({
       [name]: value,
     });
+  };
+
+  insertStorage = (event) => {
+    const { value } = event.target;
+    this.setState((prevState) => ({
+      newArray: [...prevState.newArray, value],
+    }));
+    const number = 1000;
+    setTimeout(() => {
+      const { newArray } = this.state;
+      localStorage.setItem('item', JSON.stringify(newArray));
+    }, number);
   };
 
   fetchSearch = async (frase) => {
@@ -79,21 +92,31 @@ class Search extends Component {
             </div>
             { carregar ? message : produto
               .map(({ id, title, thumbnail, price }) => (
-                <Link
-                  to={ `productDetails/${id}` }
-                  key={ id }
-                  data-testid="product-detail-link"
-                >
-                  <div
+                <div key={ id }>
+                  <Link
+                    to={ `productDetails/${id}` }
                     key={ id }
-                    data-testid="product"
-                    className="produtos"
+                    data-testid="product-detail-link"
                   >
-                    <p className="title">{title}</p>
-                    <img src={ thumbnail } alt={ title } />
-                    <p>{ price }</p>
-                  </div>
-                </Link>
+                    <div
+                      key={ id }
+                      data-testid="product"
+                      className="produtos"
+                    >
+                      <p className="title">{title}</p>
+                      <img src={ thumbnail } alt={ title } />
+                      <p>{ price }</p>
+                    </div>
+                  </Link>
+                  <button
+                    data-testid="product-add-to-cart"
+                    type="button"
+                    value={ id }
+                    onClick={ this.insertStorage }
+                  >
+                    Adicionar ao Carrinho
+                  </button>
+                </div>
               ))}
           </form>
         </div>
