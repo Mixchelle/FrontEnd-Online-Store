@@ -20,15 +20,14 @@ class Search extends Component {
   };
 
   insertStorage = (event) => {
-    const { value } = event.target;
+    const { id, price, title, thumbnail } = event;
+
     this.setState((prevState) => ({
-      newArray: [...prevState.newArray, value],
-    }));
-    const number = 1000;
-    setTimeout(() => {
+      newArray: [...prevState.newArray, { id, price, title, thumbnail }],
+    }), () => {
       const { newArray } = this.state;
       localStorage.setItem('item', JSON.stringify(newArray));
-    }, number);
+    });
   };
 
   fetchSearch = async (frase) => {
@@ -91,7 +90,7 @@ class Search extends Component {
               </button>
             </div>
             { carregar ? message : produto
-              .map(({ id, title, thumbnail, price }) => (
+              .map((object, { id, title, thumbnail, price }) => (
                 <div key={ id }>
                   <Link
                     to={ `productDetails/${id}` }
@@ -111,8 +110,7 @@ class Search extends Component {
                   <button
                     data-testid="product-add-to-cart"
                     type="button"
-                    value={ id }
-                    onClick={ this.insertStorage }
+                    onClick={ () => this.insertStorage(object) }
                   >
                     Adicionar ao Carrinho
                   </button>
