@@ -90,21 +90,21 @@ class Search extends Component {
               </button>
             </div>
             { carregar ? message : produto
-              .map((object, { id, title, thumbnail, price }) => (
-                <div key={ id }>
+              .map((object) => (
+                <div key={ object.id }>
                   <Link
-                    to={ `productDetails/${id}` }
-                    key={ id }
+                    to={ `productDetails/${object.id}` }
+                    key={ object.id }
                     data-testid="product-detail-link"
                   >
                     <div
-                      key={ id }
+                      key={ object.id }
                       data-testid="product"
                       className="produtos"
                     >
-                      <p className="title">{title}</p>
-                      <img src={ thumbnail } alt={ title } />
-                      <p>{ price }</p>
+                      <p className="title">{object.title}</p>
+                      <img src={ object.thumbnail } alt={ object.title } />
+                      <p>{ object.price }</p>
                     </div>
                   </Link>
                   <button

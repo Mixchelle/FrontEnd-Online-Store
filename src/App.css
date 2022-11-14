@@ -61,6 +61,7 @@ a {
 .form-message {
   margin-left: auto;
   margin-right: auto;
+  width: 70%;
 }
 
 .input-search {
