@@ -68,7 +68,9 @@ class ProductDetails extends Component {
             </button>
           </Link>
         </div>
-        <Form />
+        <Form
+          productInfos={ productInfos }
+        />
       </div>
     );
   }

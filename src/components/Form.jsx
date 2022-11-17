@@ -1,10 +1,19 @@
 import { Component } from 'react';
+import PropTypes from 'prop-types';
 
 const objetoForm = {
   email: '',
   text: '',
   rating: '',
 };
+
+let id;
+let avaliacoes = [];
+if (localStorage.getItem(id) !== null) {
+  avaliacoes = JSON.parse(localStorage.getItem(id));
+}
+
+console.log(avaliacoes);
 
 class Form extends Component {
   state = {
@@ -24,14 +33,15 @@ class Form extends Component {
   }
 
   sendform = (event) => {
+    const { productInfos } = this.props;
+    id = { productInfos, id };
     const { rating, email } = this.state;
     if (email === '' || rating === '') {
       event.preventDefault();
       this.setState({ formValid: true });
     } else {
-      const avaliacoes = [];
       avaliacoes.push(this.state);
-      localStorage.setItem('form', JSON.stringify(avaliacoes));
+      localStorage.setItem(id.id, JSON.stringify(avaliacoes));
       this.setState({ ...objetoForm, formValid: false });
     }
   };
@@ -48,9 +58,8 @@ class Form extends Component {
 
   render() {
     const { email, text, formValid } = this.state;
-    const ratingLent = 5;
-    const getItem = JSON.parse(localStorage.getItem('form'));
-    const texto = <p>Não há avaliações para esse produto</p>;
+    const ratingLentgh = 5;
+    const getItem = avaliacoes;
     return (
       <div>
         <h4>Avalie o produto:</h4>
@@ -71,7 +80,7 @@ class Form extends Component {
               />
             </label>
             <div>
-              {[...Array(ratingLent)].map((_, index) => {
+              {[...Array(ratingLentgh)].map((_, index) => {
                 const ratingValue = index + 1;
                 return (
                   <label
@@ -117,26 +126,23 @@ class Form extends Component {
         </form>
         { formValid ? <p data-testid="error-msg">Campos inválidos</p> : null }
         <div>
-          <h4> Avaliações de produtos: </h4>
-
-          {avaliacoes.length === 0
-            ? texto
-            : (
-              <div className="evaluation-user-container">
-                { getItem.map((avaliacao) => (
-                  <div key={ avaliacao.email }>
-                    <p>{avaliacao.email}</p>
-                    <p>{avaliacao.rating}</p>
-                    <p>{avaliacao.text}</p>
-                  </div>
-                ))}
+          <h4> Avaliações: </h4>
+          <div className="evaluation-user-container">
+            {getItem.map((avaliacao, index) => (
+              <div key={ index }>
+                <p data-testid="review-card-email">{avaliacao.email}</p>
+                <p data-testid="review-card-rating">{avaliacao.rating}</p>
+                <p data-testid="review-card-evaluation">{avaliacao.text}</p>
               </div>
-            )}
-
+            ))}
+          </div>
         </div>
       </div>
     );
   }
 }
+Form.propTypes = {
+  productInfos: PropTypes.string,
+}.isRequired;
 
 export default Form;
