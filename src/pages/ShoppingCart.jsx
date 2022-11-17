@@ -64,7 +64,7 @@ class ShoppingCart extends Component {
                       </CardTitle>
                       <CardSubtitle
                         className="mb-2 text-muted"
-                        tag="h6"
+                        tag="h5"
                       >
                         { `R$ ${price},00` }
                       </CardSubtitle>
@@ -75,13 +75,13 @@ class ShoppingCart extends Component {
                   </Card>
                 </div>))
             )
-            : (
-              <p
-                className="empty-cart"
-                data-testid="shopping-cart-empty-message"
-              >
-                Seu carrinho está vazio
-              </p>)}
+            : null}
+          {/* // <p
+            //   className="empty-cart"
+            //   data-testid="shopping-cart-empty-message"
+            // >
+            //   Seu carrinho está vazio
+            // </p>) */}
         </div>
       </section>
     );
