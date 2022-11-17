@@ -26,6 +26,7 @@ class ProductDetails extends Component {
       newArrayDetails: newArrayDetails.push(productInfos),
     });
     localStorage.setItem('itemFromDetails', JSON.stringify(newArrayDetails));
+    localStorage.setItem(productInfos.id, JSON.stringify(avaliacoes));
     // this.setState((prevState) => ({
     //   newArrayDetails: [...prevState.newArrayDetails, productInfos],
     // }), () => {
@@ -69,7 +70,7 @@ class ProductDetails extends Component {
           </Link>
         </div>
         <Form
-          productInfos={ productInfos }
+          productInfos={ productInfos.id }
         />
       </div>
     );

@@ -7,10 +7,10 @@ const objetoForm = {
   rating: '',
 };
 
-let id;
+let ids;
 let avaliacoes = [];
-if (localStorage.getItem(id) !== null) {
-  avaliacoes = JSON.parse(localStorage.getItem(id));
+if (localStorage.getItem(ids) !== null) {
+  avaliacoes = JSON.parse(localStorage.getItem(ids));
 }
 
 console.log(avaliacoes);
@@ -23,7 +23,6 @@ class Form extends Component {
 
   componentDidMount() {
     this.handleChange();
-    this.desableBtn();
   }
 
   handleChange(name, value) {
@@ -34,16 +33,16 @@ class Form extends Component {
 
   sendform = (event) => {
     const { productInfos } = this.props;
-    id = { productInfos, id };
+    ids = { productInfos };
     const { rating, email } = this.state;
     if (email === '' || rating === '') {
       event.preventDefault();
       this.setState({ formValid: true });
     } else {
       avaliacoes.push(this.state);
-      localStorage.setItem(id.id, JSON.stringify(avaliacoes));
+      localStorage.setItem(productInfos.id, JSON.stringify(avaliacoes));
       this.setState({ ...objetoForm, formValid: false });
-    }
+    } this.desableBtn();
   };
 
   desableBtn = () => {
@@ -57,6 +56,8 @@ class Form extends Component {
   };
 
   render() {
+    const { productInfos } = this.props;
+    ids = { productInfos };
     const { email, text, formValid } = this.state;
     const ratingLentgh = 5;
     const getItem = avaliacoes;
@@ -128,10 +129,13 @@ class Form extends Component {
         <div>
           <h4> Avaliações: </h4>
           <div className="evaluation-user-container">
-            {getItem.map((avaliacao, index) => (
-              <div key={ index }>
+            {getItem.map((avaliacao, i) => (
+              <div key={ i } className="avaliaçoes">
+                <h5>Email:</h5>
                 <p data-testid="review-card-email">{avaliacao.email}</p>
+                <h5> Nota: </h5>
                 <p data-testid="review-card-rating">{avaliacao.rating}</p>
+                <h5> Avaliação: </h5>
                 <p data-testid="review-card-evaluation">{avaliacao.text}</p>
               </div>
             ))}
