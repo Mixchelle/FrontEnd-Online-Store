@@ -35,7 +35,7 @@ class ProductDetails extends Component {
   };
 
   render() {
-    const { productInfos } = this.state;
+    const { match: { params: { id } } } = this.props;
     return (
       <div>
         <div>
@@ -69,7 +69,7 @@ class ProductDetails extends Component {
           </Link>
         </div>
         <Form
-          productInfos={ productInfos.id }
+          id={ id }
         />
       </div>
     );
